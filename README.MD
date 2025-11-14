@@ -1,0 +1,1 @@
+This is a final project for CS 4440 covering computer security. This is my code for various attacks against the included websites which include SQL injection, cross site scripting, and hash poising. These different attacks had to be engineered to overcome various safe guards. 
